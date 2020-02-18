@@ -1,4 +1,4 @@
-open_port.txt
+available_ports.txt
 .idea/
 .vscode/
 __pycache__/
