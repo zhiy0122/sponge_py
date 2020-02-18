@@ -9,14 +9,14 @@ class Scanner(object):
             Asyncio will establish batch_size connection requests each time,
             the smaller the batch_size, the highter the accuracy and the slower the speed,
             type: int
-            default: 2000
+            default: 4000
         file:
             The path where results will be sotred
             type: str
             default: "abailable_ports.txt"
     '''
 
-    def __init__(self, batch_size: int = 2000, file: str = 'available_ports.txt'):
+    def __init__(self, batch_size: int = 4000, file: str = 'available_ports.txt'):
         assert type(batch_size) == int, \
             '''the type of batch_size must be int'''
         self.batch_size = batch_size
@@ -83,5 +83,7 @@ class Scanner(object):
 
 
 if __name__ == "__main__":
+    start = time.time()
     scanner = Scanner()
     scanner.scan('localhost')
+    print(time.time() - start)
