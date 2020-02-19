@@ -40,12 +40,8 @@ class Scanner(object):
             file.write(f'port {port} "OPEN"\n')
             print(f'port {port} "OPEN"')
             self.output[port] = 'OPEN'
-        except ConnectionRefusedError:
+        except:
             print(f'port {port} "CLOSED"')
-        except OSError:
-            print(f'port {port} "CLOSED"')
-        except asyncio.TimeoutError:
-            print(f'port {port} "TIME OUT"')
 
     def scan(self, tgt_host, tgt_ports=None):
         '''
