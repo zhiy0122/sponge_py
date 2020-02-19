@@ -38,7 +38,7 @@ class Scanner(object):
             await asyncio.open_connection(host, port)
             # await asyncio.wait_for(asyncio.open_connection(ip, port), timeout=30)
             file.write(f'port {port} "OPEN"\n')
-            print(f'port {port} "OPEN"\n')
+            print(f'port {port} "OPEN"')
             self.output[port] = 'OPEN'
         except ConnectionRefusedError:
             print(f'port {port} "CLOSED"')
@@ -96,8 +96,8 @@ if __name__ == "__main__":
     ports = options.tgtPorts
     if ports:
         ports = ports.split(',')
-    scanner = Scanner()
     if not host:
         host = 'localhost'
+    scanner = Scanner()
     scanner.scan(host, ports)
     print(time.time() - start)
