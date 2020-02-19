@@ -94,6 +94,8 @@ if __name__ == "__main__":
     (options, args) = parser.parse_args()
     host = options.tgtHost
     ports = options.tgtPorts
+    if ports:
+        ports = ports.split(',')
     scanner = Scanner()
     if not host:
         host = 'localhost'
