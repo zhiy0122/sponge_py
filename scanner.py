@@ -1,6 +1,8 @@
 import time
 import asyncio
 
+import optparse
+
 
 class Scanner(object):
     '''
@@ -84,6 +86,18 @@ class Scanner(object):
 
 if __name__ == "__main__":
     start = time.time()
+    parser = optparse.OptionParser("usage -%prog + -H <tgtHost> -P <tgtPorts>")
+    parser.add_option('-H', dest='tgtHost', type='string',
+                      help='specify a host')
+    parser.add_option('-P', dest='tgtPorts', type='string',
+                      help='specify target port(s)')
+    (options, args) = parser.parse_args()
+    host = options.tgtHost
+    ports = options.tgtPorts
+    if ports:
+        ports = ports.split(',')
     scanner = Scanner()
-    scanner.scan('localhost')
+    if not host:
+        host = 'localhost'
+    scanner.scan(host, ports)
     print(time.time() - start)
